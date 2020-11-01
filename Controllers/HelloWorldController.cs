@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace MvcMovie.Controllers
 {
@@ -12,18 +8,32 @@ namespace MvcMovie.Controllers
 
     // GET /HelloWorld
     
-    public string Index()
+    public IActionResult Index()
     {
-      return "This is my default action...";
+      return View();
+
+      // step 1 return "This is my default action...";
     }
+
+
 
 
     // GET: /HelloWorld/Welcome
 
+    public IActionResult Welcome(string name, int numTimes = 1)
+    {
+      ViewData["Message"] = "Hello " + name;
+      ViewData["NumTimes"] = numTimes;
+
+      return View();
+    }
+
+    /* step 3
     public string Welcome(string name, int ID = 1)
     {
       return HtmlEncoder.Default.Encode($"Hello, {name}, ID: {ID}");
     }
+    */
 
 
     /*
@@ -41,7 +51,6 @@ namespace MvcMovie.Controllers
       return "This is the welcome action method...";
     }
     */
-
 
 
   }
